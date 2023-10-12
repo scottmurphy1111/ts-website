@@ -1,4 +1,12 @@
-<button>
+<script lang="ts">
+	import { goto } from '$app/navigation';
+
+	function gotoAppStore() {
+		goto('https://apps.apple.com/us/app/trucksuite-app/id1612663925');
+	}
+</script>
+
+<button on:click={gotoAppStore}>
 	<svg width="140" height="40" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<rect x="0.5" y="0.5" width="139" height="39" rx="7.5" stroke="#4A4A4A" />
 		<path

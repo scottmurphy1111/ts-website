@@ -313,8 +313,18 @@
 <div class="flex flex-col p-16 gap-4 mb-4 justify-center">
 	<h2 class="text-center">Follow</h2>
 	<div class="flex justify-center gap-4">
-		<LinkedInIcon />
-		<InstagramIcon />
-		<FacebookIcon />
+		<a
+			href="https://www.linkedin.com/company/trucksuite/"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			<LinkedInIcon />
+		</a>
+		<a href="https://www.instagram.com/trucksuitellc/" target="_blank" rel="noopener noreferrer">
+			<InstagramIcon />
+		</a>
+		<a href="https://www.facebook.com/trucksuite" target="_blank" rel="noopener noreferrer">
+			<FacebookIcon />
+		</a>
 	</div>
 </div>
