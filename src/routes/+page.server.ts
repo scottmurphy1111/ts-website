@@ -29,9 +29,12 @@ export const actions: Actions = {
 				}
 			});
 		} catch (error) {
+			console.log(error);
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
-				return fail(500, { error: 'Something went wrong' });
+				return fail(500, { error: "You're already subscribed" });
 			}
+
+			return fail(500, { error: 'Something went wrong' });
 		}
 	}
 };

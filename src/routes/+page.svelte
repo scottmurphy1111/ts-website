@@ -4,6 +4,7 @@
 	import logoDark from '$lib/assets/images/ts-logo-dark.svg';
 	import Debris from '$lib/assets/images/debris.svg';
 	import TruckerHome from '$lib/assets/images/trucker-home.png';
+	import IndependentTruckers from '$lib/assets/images/IndependentTruckers.png';
 	import NavItem from '$lib/components/NavItem.svelte';
 	import MobileIcon from '$lib/assets/icons/mobile.svelte';
 	import JustDriveIcon from '$lib/assets/icons/just-drive.svelte';
@@ -24,7 +25,7 @@
 	let showJustDrive = false;
 
 	export let form;
-	$: console.log('form 😍', form?.error);
+	$: console.log('form 😍', form);
 
 	onMount(() => {
 		setTimeout(() => {
@@ -206,30 +207,62 @@
 	</div>
 {/if}
 
-<div class="flex gap-32 p-8">
-	<div class="w-1/2">
-		<div class="section-header inline-flex flex-col gap-1">
-			<h2>Who We Are</h2>
-			<div class="debris"><img src={Debris} alt="debris" /></div>
-		</div>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-			labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna. Turpis
-			egestas sed tempus urna et pharetra. Eleifend donec pretium vulputate sapien nec sagittis
-			aliquam malesuada bibendum. Turpis cursus in hac habitasse platea dictumst quisque sagittis.
-			Risus feugiat in ante metus. Etiam erat velit scelerisque in. Dignissim convallis aenean et
-			tortor at risus. Lorem ipsum dolor sit amet consectetur adipiscing elit. Morbi tincidunt
-			ornare massa eget egestas purus. Praesent semper feugiat nibh sed pulvinar proin gravida
-			hendrerit. Amet tellus cras adipiscing enim eu turpis. Consectetur adipiscing elit duis
-			tristique sollicitudin nibh sit amet. A scelerisque purus semper eget duis at tellus.
-		</p>
+<div class="flex flex-col p-16">
+	<div class="section-header inline-flex flex-col gap-1 w-fit">
+		<h2>Who We Are</h2>
+		<div class="debris"><img src={Debris} alt="debris" /></div>
 	</div>
-	<div class="w-1/2">
-		<img class="w-full" src={TruckerHome} alt="Trucker Home" />
+	<div class="flex gap-16">
+		<div class="w-1/2">
+			<div class="flex flex-col gap-2">
+				<p class="mb-4">
+					TruckSuite is a “technology based” innovative and comprehensive Owner Operator Support
+					program that is designed to offer the Owner Operator all truck ownership benefits
+					typically only available to large fleets. The program also provides multiple benefits to
+					carriers as well as asset protection to lenders.
+				</p>
+				<ul class="list-disc ml-4 mb-2 flex flex-col gap-2">
+					<li>
+						TruckSuite establishes an <strong>arm’s length</strong> relationship between the Carrier
+						and the independent Owner Operator.
+					</li>
+					<li>
+						TruckSuite offers several <strong>“Best in Class”</strong> industry experienced partners
+						to insure the Owner Operator the best path to success.
+					</li>
+					<li>
+						TruckSuite offers its Owner Operator Members several <strong
+							>discounts
+						</strong>including:
+						<ul class="list-disc ml-4">
+							<li>Labor rate discounts</li>
+							<li>Parts discounts</li>
+							<li>Tire discounts</li>
+						</ul>
+					</li>
+					<li>
+						Through various industry relationships, TruckSuite can reduce costly vehicle <strong
+							>downtime</strong
+						> by assisting the Owner Operator “audit” repair quotes as well as having the Owner Operator
+						treated as a “fleet customer”.
+					</li>
+					<li>TruckSuite promotes <strong>driver retention</strong>.</li>
+					<li>TruckSuite provides <strong>asset protection</strong> to lenders.</li>
+				</ul>
+				<p>
+					Successful participation in the TruckSuite Program allows the Owner Operator to <strong
+						>…<em>Just Drive!</em></strong
+					>
+				</p>
+			</div>
+		</div>
+		<div class="w-1/2">
+			<img class="w-full" src={IndependentTruckers} alt="Trucker Home" />
+		</div>
 	</div>
 </div>
 <Hr />
-<div class="flex flex-col p-8 gap-4 mb-4 justify-center">
+<div class="flex flex-col p-16 gap-4 mb-4 justify-center">
 	<h2 class="text-center mb-4">Join Our Mailing List</h2>
 	<form
 		class="flex flex-col gap-4 align-center justify-center"
@@ -237,8 +270,10 @@
 		action="?/join"
 		use:enhance={({ formData }) => {
 			console.log('formData', formData);
-			return async ({ result }) => {
-				if (result?.status === 200) {
+			return async ({ result, update }) => {
+				await update();
+				console.log('result', result);
+				if (result?.status === 204) {
 					toast.push('Thanks for joining our mailing list!');
 				}
 			};
@@ -249,9 +284,11 @@
 			<LabelInput label="Email*" placeholder="Your Email" name="email" value={$mailingList.email} />
 			<LabelInput label="Phone" placeholder="Your Phone" name="phone" value={$mailingList.phone} />
 		</div>
-		<div class="flex gap-4 justify-center">
-			<input type="checkbox" name="agree" checked={$mailingList.agree} />
-			<span>Agree to let us send you correspondence through email and/or text.</span>
+		<div class="flex justify-center">
+			<label for="agree" class="flex gap-4">
+				<input type="checkbox" id="agree" name="agree" checked={$mailingList.agree} />
+				<span> Agree to let us send you correspondence through email and/or text. </span>
+			</label>
 		</div>
 
 		{#if form?.error}
@@ -265,7 +302,7 @@
 	</form>
 </div>
 <Hr />
-<div class="flex flex-col p-8 gap-4 mb-4 justify-center">
+<div class="flex flex-col p-16 gap-4 mb-4 justify-center">
 	<h2 class="text-center">Download</h2>
 	<div class="flex justify-center gap-2">
 		<AppStore />
@@ -273,7 +310,7 @@
 	</div>
 </div>
 <Hr />
-<div class="flex flex-col p-8 gap-4 mb-4 justify-center">
+<div class="flex flex-col p-16 gap-4 mb-4 justify-center">
 	<h2 class="text-center">Follow</h2>
 	<div class="flex justify-center gap-4">
 		<LinkedInIcon />
