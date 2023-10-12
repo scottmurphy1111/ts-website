@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	/* Reference name */
+	font-family: 'Montserrat';
+	/* For multiple files use commas, ex: url(), url(), ... */
+	src: url('/fonts/Montserrat-VariableFont_wght.ttf'),
+		url('/fonts/Montserrat-Italic-VariableFont_wght.ttf');
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+	font-size: 2rem;
+	font-weight: 600;
+	line-height: 2rem;
+}
+
+button.btn {
+	@apply font-semibold py-2 px-4 rounded-md;
+}
+
+button.btn-primary {
+	@apply bg-ts-blue text-white text-sm;
+}
+
+.section-header {
+	@apply mb-4;
+}
+.debris {
+	width: 100%;
+}
